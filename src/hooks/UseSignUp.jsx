@@ -1,7 +1,7 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAuthContext } from "../context/AuthContext";
-import config from "../config/config"
+import { config } from "../config/config"
 
 const UseHooks = () => {
   const [loading, setLoading] = useState(false);
