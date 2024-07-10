@@ -32,6 +32,7 @@ export const SocketContextProvider = ({ children }) => {
 				setSocket(null);
 			}
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[authUser])
 
     return (

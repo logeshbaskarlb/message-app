@@ -1,6 +1,7 @@
 import { useState } from "react"
 import toast from "react-hot-toast"
 import { useAuthContext } from "../context/AuthContext";
+import axios from "axios";
 
 const useLogin = () =>{
 
@@ -15,7 +16,7 @@ const useLogin = () =>{
 
         setLoading(true)
         try {
-            const res = await fetch("/api/auth/login", {
+            const res = await axios("/api/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -32,7 +33,7 @@ const useLogin = () =>{
             setAuthUser(data)
             toast.success("Login Successful")
         } catch (error) {
-            toast.error( "Invalid password" ,error.message)
+            toast.error( "Invalid password" , error.message);
         } finally {
             setLoading(false)
         }
