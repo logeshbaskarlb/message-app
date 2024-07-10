@@ -1,7 +1,6 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAuthContext } from "../context/AuthContext";
-import axios from "axios";
 
 
 const UseHooks = () => {
@@ -26,7 +25,7 @@ const UseHooks = () => {
     if (!success) return;
 
     try {
-      const res = await axios(`/api/auth/signup`, {
+      const res = await fetch(`/api/auth/signup`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({
@@ -47,7 +46,7 @@ const UseHooks = () => {
       toast.success('Signup successful');
       // context
     } catch (error) {
-      toast.error(error.message);
+      toast.error("Signup",error.message);
     } finally {
       setLoading(false);
     }

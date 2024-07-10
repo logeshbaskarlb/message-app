@@ -1,7 +1,6 @@
 import { useState } from "react"
 import toast from "react-hot-toast"
 import { useAuthContext } from "../context/AuthContext";
-import axios from "axios";
 
 const useLogin = () =>{
 
@@ -16,7 +15,7 @@ const useLogin = () =>{
 
         setLoading(true)
         try {
-            const res = await axios("/api/auth/login", {
+            const res = await fetch("/api/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
