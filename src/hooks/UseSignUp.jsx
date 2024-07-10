@@ -2,9 +2,12 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAuthContext } from "../context/AuthContext";
 
+
 const UseHooks = () => {
   const [loading, setLoading] = useState(false);
   const { setAuthUser } = useAuthContext();
+  const apiUrl = import.meta.env.VITE_API_URL || ""
+
   const signup = async ({
     fullname,
     username,
@@ -22,7 +25,7 @@ const UseHooks = () => {
     if (!success) return;
 
     try {
-      const res = await fetch(`/api/auth/signup`, {
+      const res = await fetch(`${apiUrl}/api/auth/signup`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({
@@ -40,6 +43,7 @@ const UseHooks = () => {
       // local storage
       localStorage.setItem("chat-user", JSON.stringify(data));
       setAuthUser(data);
+      toast.success('Signup successful');
       // context
     } catch (error) {
       toast.error(error.message);
