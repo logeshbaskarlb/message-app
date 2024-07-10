@@ -8,7 +8,7 @@ export default defineConfig({
     port: 3000,
     proxy : {
       "/api" : {
-        target : "https://message-app-backend-hl1o.onrender.com",
+        target : "https://message-app-backend-1.onrender.com",
         changeOrigin : true,
         secure : false
       }

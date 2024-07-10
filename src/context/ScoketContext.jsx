@@ -16,7 +16,7 @@ export const SocketContextProvider = ({ children }) => {
     const {authUser} = useAuthContext()
     useEffect(()=>{
         if(authUser) {
-            const socket = io("https://message-app-backend-hl1o.onrender.com" , {
+            const socket = io("https://message-app-backend-1.onrender.com" , {
                 query: { userId: authUser._id }
             })
             setSocket(socket)
