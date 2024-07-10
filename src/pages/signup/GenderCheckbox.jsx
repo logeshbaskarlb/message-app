@@ -1,10 +1,7 @@
 
 // eslint-disable-next-line react/prop-types
 const GenderCheckbox = ({ onCheckBoxChange, selectedGender }) => {
-
-
-
-
+  
   return (
     <div className=" flex">
       <div className=" form-control">
