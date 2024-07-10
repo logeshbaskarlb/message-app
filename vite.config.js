@@ -10,7 +10,8 @@ export default defineConfig({
       "/api" : {
         target : "https://message-app-backend-1.onrender.com",
         changeOrigin : true,
-        secure : false
+        secure : false,
+        rewrite: (path) => path.replace(/^\/api/, ''),      
       }
     }
   }
