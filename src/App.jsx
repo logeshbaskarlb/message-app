@@ -9,11 +9,9 @@ import PageNotFound from './pages/home/PageNotFound'
 function App() {
 
   const {authUser} = useAuthContext()
-
+  console.log(authUser);
   return (
     <div className=' p-4 h-screen flex items-center justify-center'>
-     {/* <Login /> */}
-     {/* <SignUp /> */}
      <Routes>
       <Route path='/' element= {authUser ? <Home /> : <Navigate to={"/login"}/> } />
       <Route path='/login' element={authUser ? <Navigate to={"/"}/>: <Login />} />

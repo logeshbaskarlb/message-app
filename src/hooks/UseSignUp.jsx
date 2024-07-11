@@ -1,11 +1,12 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAuthContext } from "../context/AuthContext";
+import axios from "axios";
 
 const UseHooks = () => {
   const [loading, setLoading] = useState(false);
   const { setAuthUser } = useAuthContext();
-  const apiUrl = import.meta.env.VITE_API_URL || ""
+  const apiUrl = import.meta.env.VITE_API_URL || "";
 
   const signup = async ({
     fullname,
@@ -22,30 +23,29 @@ const UseHooks = () => {
       gender,
     });
     if (!success) return;
-
     try {
-      const res = await fetch(`${apiUrl}/api/auth/signup`, {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify({
-          fullname,
-          username,
-          password,
-          confirmPassword,
-          gender,
-        }),
+      setLoading(true)
+      const res = await axios.post(`/api/auth/signup`, {
+        fullname,
+        username,
+        password,
+        confirmPassword,
+        gender,
       });
-      const data = await res.json();
+      console.log(`/api/auth/signup`);
+
+      console.log(res);
+      const data = res.data;
       if (data.error) {
         throw new Error(data.error);
       }
-      // local storage
       localStorage.setItem("chat-user", JSON.stringify(data));
       setAuthUser(data);
-      toast.success('Signup successful');
+      toast.success("Signup successful");
       // context
     } catch (error) {
-      toast.error("Signup",error.message);
+      toast.error(error.message);
+      console.log("Failed", error.message);
     } finally {
       setLoading(false);
     }
