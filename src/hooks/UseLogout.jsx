@@ -11,7 +11,7 @@ const useLogout = () => {
     const logout = async () => {
         setLoading(true)
         try {
-            const res = await axios.post(`${apiUrl}/api/auth/logout`)
+            const res = await axios.post(`/api/auth/logout`)
             const data = res.data
             if(data.error) {
                 throw new Error(data.error)

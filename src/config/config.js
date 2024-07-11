@@ -1,3 +1,3 @@
 export const config = {
-    userApi: 'http://localhost:5000'
+    userApi: 'https://message-app-backend-2.onrender.com'
 }
