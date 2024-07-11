@@ -25,7 +25,7 @@ const UseHooks = () => {
     if (!success) return;
     try {
       setLoading(true)
-      const res = await axios.post(`/api/auth/signup`, {
+      const res = await axios.post(`${apiUrl}/api/auth/signup`, {
         fullname,
         username,
         password,
