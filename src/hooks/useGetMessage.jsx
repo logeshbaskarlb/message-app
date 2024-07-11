@@ -8,12 +8,13 @@ const useGetMessage = () => {
  
     const [ loading, setLoading] = useState(false);
     const {messages, setMessages, selectedConversation } = useConversation()
+    const apiUrl = import.meta.env.VITE_API_URL || "";
 
     useEffect(()=>{
         const getMessage = async () => {
             setLoading(true)
             try {
-                const res = await axios.get(`/api/message/${selectedConversation._id}`,)
+                const res = await axios.get(`${apiUrl}/api/message/${selectedConversation._id}`,)
                 const data = res.data
                 if(data.error) throw Error(data.error)
                 setMessages(data)

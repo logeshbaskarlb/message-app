@@ -8,6 +8,7 @@ const useLogin = () =>{
 
     const [loading, setLoading] = useState(false);
     const {setAuthUser} = useAuthContext()
+    const apiUrl = import.meta.env.VITE_API_URL || "";
 
     const login = async (username, password) => {
 
@@ -17,7 +18,7 @@ const useLogin = () =>{
 
         setLoading(true)
         try {
-            const res = await axios.post(`/api/auth/login`, {
+            const res = await axios.post(`${apiUrl}/api/auth/login`, {
                username, password
             }) 
 
