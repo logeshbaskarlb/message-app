@@ -5,7 +5,7 @@ import axios from "axios";
 
 const UseHooks = () => {
   const [loading, setLoading] = useState(false);
-  const { setAuthUser } = useAuthContext();
+  const { setAuthUser, authUser } = useAuthContext();
   const apiUrl = import.meta.env.VITE_API_URL || "";
 
   const signup = async ({
@@ -25,15 +25,18 @@ const UseHooks = () => {
     if (!success) return;
     try {
       setLoading(true)
+      const config =  {
+        headers : {
+          Authorization: authUser ? `Bearer ${authUser.token}` : '',
+        }
+      }
       const res = await axios.post(`${apiUrl}/api/auth/signup`, {
         fullname,
         username,
         password,
         confirmPassword,
         gender,
-      });
-      console.log(`/api/auth/signup`);
-
+      }, config);
       console.log(res);
       const data = res.data;
       if (data.error) {
